@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\UserBookController;
 use Illuminate\Http\Request;
@@ -16,11 +17,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::middleware('auth:sanctum');
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/rent',[UserBookController::class, 'index']);
+    Route::post('/store',[UserBookController::class, 'store']);
+    Route::patch('/store/{id}',[UserBookController::class, 'update']);
+    Route::get('/me',[AuthenticationController::class, 'me']);
+    Route::get('/logout',[AuthenticationController::class, 'logout']);
+});
 
 Route::get('/books',[BookController::class, 'index']);
-Route::get('/rent',[UserBookController::class, 'index']);
-Route::post('/store',[UserBookController::class, 'store']);
-Route::patch('/store/{id}',[UserBookController::class, 'update']);
+Route::post('/login',[AuthenticationController::class, 'login']);
