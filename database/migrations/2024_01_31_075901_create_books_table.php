@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('title', 255);
             $table->string('author');
             $table->integer('year');
-            $table->string('cover');
-            $table->text('desc');
+            $table->string('cover')->nullable();
+            $table->text('desc')->nullable();
             $table->timestamps();
         });
     }

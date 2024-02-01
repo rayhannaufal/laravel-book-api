@@ -18,13 +18,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \App\Models\Book::factory()->create([
-            'title' => 'Dilan 1990',
-            'author' => 'Pidi Baiq',
-            'year' => '2018',
-            'cover' => '',
-            'desc' => '',
-        ]);
-        \App\Models\Book::factory()->create([
             'title' => 'Dilan: He is My Dilan',
             'author' => 'Pidi Baiq',
             'year' => '2014',

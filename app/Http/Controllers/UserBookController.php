@@ -12,13 +12,12 @@ class UserBookController extends Controller
         $data = UserBook::all();
         return response()->json([
             'status_code' => Response::HTTP_OK,
-            'message' => 'success',
+            'message' => 'Success',
             'data' => $data->loadMissing('book:id,title')
         ]);
     }
 
     public function store(Request $request) {
-
         $request->validate([
             'peminjam' => 'required',
             'admin_id' => 'required|exists:users,id',
@@ -30,22 +29,29 @@ class UserBookController extends Controller
 
         return response()->json([
             'status_code' => Response::HTTP_CREATED,
-            'message' => 'success',
+            'message' => 'Resource created succesfully',
             'data' => $data
         ]);
     }
 
     public function update(Request $request, $id) {
-        $request->validate([
-            'status' => 'required'
-        ]);
-
         $data = UserBook::findOrFail($id);
         $data->update($request->all());
 
         return response()->json([
             'status_code' => Response::HTTP_NO_CONTENT,
-            'message' => 'update success',
+            'message' => 'Resource updated succesfully',
+            'data' => $data
+        ]);
+    }
+
+    public function delete($id) {
+        $data = UserBook::findOrFail($id);
+        $data->delete();
+
+        return response()->json([
+            'status_code' => Response::HTTP_NO_CONTENT,
+            'message' => 'Resource deleted succesfully',
             'data' => $data
         ]);
     }
