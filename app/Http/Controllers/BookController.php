@@ -45,9 +45,7 @@ class BookController extends Controller
     }
 
     public function update(Request $request, $id) {
-        $data = Book::findOrFail($id);
-
-        // return $data;
+        $data = Book::findOrFail($id);  
 
         if ($request->file) {
             $file_name = '';
