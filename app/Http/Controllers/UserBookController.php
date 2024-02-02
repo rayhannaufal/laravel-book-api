@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\UserBook;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class UserBookController extends Controller
 {
@@ -18,6 +19,8 @@ class UserBookController extends Controller
     }
 
     public function store(Request $request) {
+
+        $request['admin_id'] = Auth::user()->id;
         $request->validate([
             'peminjam' => 'required',
             'admin_id' => 'required|exists:users,id',
