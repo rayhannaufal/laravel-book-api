@@ -17,13 +17,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/books',[BookController::class, 'index']); // Daftar buku
 Route::post('/login',[AuthenticationController::class, 'login']);
+Route::get('/books',[BookController::class, 'index']); // Daftar buku
+Route::get('/books/{id}',[BookController::class, 'show']); // Detail buku
 
 Route::middleware(['auth:sanctum'])->group(function () {
 
-    Route::post('books/add',[BookController::class, 'store']); // Tambah daftar buku
-    Route::post('books/{id}',[BookController::class, 'update']); // Edit daftar buku
+    Route::post('/books/add',[BookController::class, 'store']); // Tambah daftar buku
+    Route::post('/books/{id}',[BookController::class, 'update']); // Edit daftar buku
     Route::delete('books/{id}',[BookController::class, 'delete']); // Hapus daftar buku
 
     Route::get('/rent',[UserBookController::class, 'index']); // Daftar peminjaman buku

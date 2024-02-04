@@ -20,6 +20,15 @@ class BookController extends Controller
         ]);
     }
 
+    public function show($id) {
+        $books = Book::findOrFail($id);
+        return response()->json([
+            'status_code' => Response::HTTP_OK,
+            'message' => 'success',
+            'data' => $books
+        ]);
+    }
+
     public function store(Request $request) {
         $request->validate([
             'title' => 'required',
@@ -45,7 +54,7 @@ class BookController extends Controller
     }
 
     public function update(Request $request, $id) {
-        $data = Book::findOrFail($id);  
+        $data = Book::findOrFail($id);
 
         if ($request->file) {
             $file_name = '';
