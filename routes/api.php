@@ -30,7 +30,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/rent',[UserBookController::class, 'index']); // Daftar peminjaman buku
 
     Route::post('/store',[UserBookController::class, 'store']); // Tambah daftar peminjaman buku
-    Route::patch('/store/{id}',[UserBookController::class, 'update']); // Edit daftar peminjaman buku
+    Route::post('/store/{id}',[UserBookController::class, 'update']); // Edit daftar peminjaman buku
     Route::delete('/store/{id}',[UserBookController::class, 'delete']); // Hapus daftar peminjaman buku
 
     Route::get('/me',[AuthenticationController::class, 'me']);
